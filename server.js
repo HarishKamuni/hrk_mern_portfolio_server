@@ -3,6 +3,11 @@ const connectDB = require('./config/dbConfig');
 require('dotenv').config();
 
 const app = express();
+const portfolioRoute = require('./routes/portfolioRoute.js');
+
+app.use(express.json());
+
+app.use('/api/portfolio', portfolioRoute);
 
 const port = process.env.PORT || 5000;
 

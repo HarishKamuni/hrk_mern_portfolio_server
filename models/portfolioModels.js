@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const introSchema = new mongoose.Schema({
-  welcomText: {
+  welcomeText: {
     type: String,
     required: true,
   },
@@ -74,7 +74,7 @@ const projectSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  techStack: {
+  technologies: {
     type: Array,
     required: true,
   },
