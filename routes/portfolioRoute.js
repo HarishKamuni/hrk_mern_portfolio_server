@@ -49,4 +49,22 @@ router.post('/update-intro', async (req, res) => {
   }
 });
 
+//update About
+router.post('/update-about', async (req, res) => {
+  try {
+    const about = await About.findByIdAndUpdate(
+      { _id: req.body._id },
+      req.body,
+      { new: true }
+    );
+    res.status(200).send({
+      data: about,
+      success: true,
+      message: 'About updated successfully',
+    });
+  } catch (error) {
+    res.status(500).send(error);
+  }
+});
+
 module.exports = router;
