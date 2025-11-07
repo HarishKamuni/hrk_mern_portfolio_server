@@ -78,7 +78,41 @@ router.post('/add-experience', async (req, res) => {
       message: 'Experience Added Successfully',
     });
   } catch (error) {
-    res.status(500).send(error);
+    res.status(500).send({ error, message: 'please fill all the fields' });
+  }
+});
+
+//update Experience
+router.post('/update-experience', async (req, res) => {
+  console.log('req.body', req.body);
+  try {
+    const experience = await Experience.findByIdAndUpdate(
+      { _id: req.body._id },
+      req.body,
+      { new: true }
+    );
+    console.log('experience', experience);
+    res.status(200).send({
+      data: experience,
+      success: true,
+      message: 'Experience Updated Successfully',
+    });
+  } catch (error) {
+    res.status(550).send(error);
+  }
+});
+
+//delete Experience
+router.post('/delete-experience', async (req, res) => {
+  try {
+    const experience = await Experience.findOneAndDelete({ _id: req.body._id });
+    res.status(200).send({
+      data: experience,
+      success: true,
+      message: 'Experience Deleted Successfully',
+    });
+  } catch (error) {
+    res.status(550).send(error);
   }
 });
 
