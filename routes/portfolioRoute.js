@@ -7,6 +7,7 @@ const {
   Course,
   Contact,
 } = require('../models/portfolioModels.js');
+const User = require('../models/userModel.js');
 
 //get all portfolio data
 router.get('/get-portfolio-data', async (req, res) => {
@@ -224,6 +225,30 @@ router.post('/update-contact', async (req, res) => {
       success: true,
       message: 'Contact updated successfully',
     });
+  } catch (error) {
+    res.status(500).send(error);
+  }
+});
+
+router.post('/admin-login', async (req, res) => {
+  try {
+    const user = await User.findOne({
+      userName: req.body.userName,
+      passward: req.body.passward,
+    });
+    if (user) {
+      res.status(200).send({
+        data: user,
+        success: true,
+        message: 'Login successfully',
+      });
+    } else {
+      res.status(200).send({
+        data: user,
+        success: false,
+        message: 'Invalid userName or passward',
+      });
+    }
   } catch (error) {
     res.status(500).send(error);
   }
