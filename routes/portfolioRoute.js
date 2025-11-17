@@ -91,7 +91,7 @@ router.post('/update-experience', async (req, res) => {
       req.body,
       { new: true }
     );
-    console.log('experience', experience);
+
     res.status(200).send({
       data: experience,
       success: true,
@@ -230,12 +230,14 @@ router.post('/update-contact', async (req, res) => {
   }
 });
 
+//admin login
 router.post('/admin-login', async (req, res) => {
   try {
     const user = await User.findOne({
       userName: req.body.userName,
       passward: req.body.passward,
     });
+    user.passward = null;
     if (user) {
       res.status(200).send({
         data: user,
