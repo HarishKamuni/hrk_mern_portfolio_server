@@ -1,4 +1,5 @@
 const express = require('express');
+const cors = require('cors');
 const connectDB = require('./config/dbConfig');
 require('dotenv').config();
 
@@ -6,6 +7,13 @@ const app = express();
 const portfolioRoute = require('./routes/portfolioRoute.js');
 
 app.use(express.json());
+
+app.use(
+  cors({
+    origin: ['http://localhost:5173', 'https://your-netlify-site.netlify.app'],
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  })
+);
 
 app.use('/api/portfolio', portfolioRoute);
 
