@@ -10,7 +10,10 @@ app.use(express.json());
 
 app.use(
   cors({
-    origin: ['http://localhost:5173', 'https://your-netlify-site.netlify.app'],
+    origin: [
+      'http://localhost:5173',
+      'https://endearing-kangaroo-e2bcbf.netlify.app/',
+    ],
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
   })
 );
