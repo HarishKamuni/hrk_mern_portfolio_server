@@ -28,7 +28,7 @@ const aboutSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  description1: {
+  description: {
     type: String,
     required: true,
   },
